@@ -1,0 +1,27 @@
+1) acquire - function for acquiring lock
+   release - function for releasing lock
+
+2) holding() function checks whether the current function is holding the lock.
+
+3) Call the acquire() function again in the allocproc() function.
+   proc.c - LINE 80 - code added - "acquire(&ptable.lock);"
+   The code added has been commented and is present in the proc.c function 
+   at line number 80.
+
+4) xchg - for atomic operation. It sets the new value of the lock to 1 and stores the previous value
+		  in a fixed register in a single atomic operation. 
+   
+   pushcli - It calls the cli() function for disabling interrupts for a particular cpu.
+   			 It also sets the intena flag for the cpu as read from eflags which shows that
+   			 whether interrupts were enables previously. It then increments the count of the 
+   			 ncli variable by 1.
+
+   popcli - It calls the sti function when the ncli count of the cpu is 0 and the intena variable is 1.
+
+   Therefore if interrupts are off, then pushcli, popcli leave them off.
+
+5) If the sti() is called after acquire then interrupts are enabled for the cpu. This can cause a deadlock state
+   while the code between the acquire and release state is being executed and another local interrupt at the same 
+   cpu is called which is contending for the same lock. 
+   The cli() call before the release function call would not result in correct functioning since once sti() has been 
+   called and interrupts have already been enaabled then it is too late to call cli() before release and the lock functioning is disrupted. 
