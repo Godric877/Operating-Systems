@@ -1,0 +1,14 @@
+/*ps output before giving input*/
+PID STAT
+16557 S+
+
+/*ps output after giving input*/
+PID STAT
+16557 Z+
+
+The state S is the state of interruptible sleep when the child process is waiting for an input.
+The state Z is the zombie state when the child process has been terminated but not reaped by its parent.
+
+The + symbol means that the application is running in the foreground.
+
+
