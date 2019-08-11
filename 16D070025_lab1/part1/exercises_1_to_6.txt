@@ -1,0 +1,120 @@
+Exercise 1 : 
+
+	a) Sockets :- 1 (Using the lscpu command)
+ 	   Cores :- 4 (Number of cores per socket = 1 using the lscpu command)
+	   CPUS :- 4 (Using the lscpu command)
+
+	b) 2028.164 MHz
+	   2098.359 MHz
+	   1833.164 MHz
+	   2060.742 MHz
+
+	   (Listed in the /proc/cpuinfo file)
+
+	c) 8145028 kB (Listed in the /proc/meminfo file)
+
+	d) Free Memory :- 4891544 kB
+	   Available Memory :- 6555516 kB
+
+	   (Listed in /proc/cpuinfo file)
+
+           Free Memory and Available Memory are different because Available Memory includes Free Memory as well as Cached Memory.
+
+
+        e) 220 (Count number of directories with PIDs in /proc)
+          220 (Using ps -ax | wc -l)
+
+        f) 39991871 (cat /proc/stat | grep ctxt)
+
+        g) All files except kCore are shown with a filesize 0.
+           The size of kCore - 140737477881856 Bytes
+
+           (Command ls -l)
+
+Exercise 2 :
+	           
+	            VmSize        VmRSS
+
+	memory_1.c  8136 kB       636 kB
+	memory_2.c  12040 kB      724 kB
+	memory_3.c  8136 kB       3088 kB
+	memory_4.c  8236 kB       5252 kB
+
+	VmSize is the Virtual Memory Size
+	VmRSS is the Resident Set Size
+
+	VmSize is the amount of Virtual Memory allocated dependent on the size of the array.
+	VmRSS is the amount of physical memory actually used, i.e amount of Vm actually resident in memory.
+
+	In Program 1, 2, since the array is only declared and not assigned, the VmRSS is lower.
+	In Program 3, 4, since the array is assigned as well, therefore physical memory is also used. 
+
+Exercise 3 :
+	
+	23 Subprocesses
+
+	Execute the command ./subprocesses 16D070025 
+	Execute command ps -ux | grep 16D070025 | wc -l 
+	The above result is 25
+	We have to remove the parent process and The last line is not a child process
+
+Exercise 4 :
+
+	26 System Calls in empty.c (Command strace ./empty > out1 2>err1)
+	34 System Calls in hello.c (Command strace ./hello > out2 2>err2, Provide input to the program)
+
+	The first 25 lines are common in the output of strace.
+
+	"
+	getpid()                                = 22993
+	fstat(1, {st_mode=S_IFREG|0664, st_size=0, ...}) = 0
+	brk(NULL)                               = 0x11cc000
+	brk(0x11ee000)                          = 0x11ee000
+	fstat(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 19), ...}) = 0
+	read(0, "Syamantak\n", 1024)            = 10
+	write(1, "\nProcess ID : 22993 \n\nEnter your"..., 59) = 59
+	lseek(0, -1, SEEK_CUR)                  = -1 ESPIPE (Illegal seek)
+	"
+
+	The above lines are extra in hello, due to different functionality of the program since we have to provide input to the program.
+	Also there is difference in some lines due to the memory addresses.
+
+	The system calls are :-
+	 1) execve
+	 2) brk
+	 3) access
+	 4) open
+	 5) fstat
+	 6) mmap
+	 7) close
+	 8) read
+	 9) mprotect
+	 10) arch_prctl
+	 11) munmap
+	 12) getpid
+	 13) write
+	 14) lseek
+	 15) exit_group
+    
+Exercise 5 :
+	
+	11 files (Command lsof | grep openfiles | wc -l)
+
+Exercise 6 :
+
+	NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0 59.6G  0 disk 
+|-sda1   8:1    0 58.7G  0 part /
+|-sda2   8:2    0    1K  0 part 
+`-sda5   8:5    0  975M  0 part [SWAP]
+
+sda is the block device in the system.
+sda1 is mounted at /.
+
+(Command lsblk)
+
+Exercise 7 :
+	
+	The boot_sector1.bin file does not contain the magic number as the last 2 bytes while the 
+	boot_sector2.bin file contains the magic number AA 55 as the last two bytes. 
+	
