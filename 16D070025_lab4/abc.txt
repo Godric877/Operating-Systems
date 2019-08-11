@@ -1,0 +1,7 @@
+this is my file
+the first line
+the second line 
+the third line
+the fourthe line
+the fifth line
+the sixth line

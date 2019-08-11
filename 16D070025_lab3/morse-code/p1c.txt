@@ -1,0 +1,8 @@
+When the sleep time for the child is greater than the grandchild, first the grandchild exits and send the SIGCHLD signal
+to the child which handles the signal by printing the required output. Then, the child exits and sends the SIGCHLD signal
+to the parent which also handles the signal appropriately.
+
+However, when the sleep time for the child is lesser than the grandchild, the child exits first and sends the SIGCHLD signal 
+to the parent who handles it correctly by printing the required output to the screen. However, since the child process has exited
+the grandchild gets allocated the init process as the parent due to which the default handler of the init process handles the SIGCHLD 
+signal of the grandchild and no output is printed to the screen.

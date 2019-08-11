@@ -1,0 +1,9 @@
+The turtle was implemented by first making a pass through the string to handle the 
+simple linux commands and the cd command.
+The cd command was executed using the chdir system call
+The simple linux commands were executed using the execvp system call in the child process
+The ;; functionality was implemented by passing through the commands and executing them one by one on encountering a ;;
+The > functionality was implemented by duplicating the file descriptor of the desired file with that of the standard output and executing 
+the command using execvp
+The Ctrl+C functionality was implemented using the signal-handler
+

@@ -1,0 +1,25 @@
+Terminal$ sleep 1 ;; echo "Hello" ;; sleep 2 ;; cat abc.txt ;; sleep 3 ;; ls -l
+Got command sleep 1 ;; echo "Hello" ;; sleep 2 ;; cat abc.txt ;; sleep 3 ;; ls -l
+"Hello"
+"Random text in abc.txt"
+total 88
+-rwxr-xr-x  1 syamantak  staff  13336 Jul 30 23:42 a.out
+-rwx---r-x  1 syamantak  staff     25 Jul 30 23:47 abc.txt
+-rw-r--r--@ 1 syamantak  staff    523 Jul 30 23:46 output.txt
+-rw-r--r--@ 1 syamantak  staff    623 Jul 30 23:45 report.txt
+-rwx---r-x  1 syamantak  staff     20 Jul 30 23:18 sample.txt
+-rw-r--r--@ 1 syamantak  staff   6665 Jul 30 23:42 turtle.c
+-rwx---r-x  1 syamantak  staff     25 Jul 30 23:47 xyz.txt
+
+Terminal$ cat hi.txt ;; echo "You know nothing Jon Snow"
+Got command cat hi.txt ;; echo "You know nothing Jon Snow"
+cat: hi.txt: No such file or directory
+"You know nothing Jon Snow"
+
+Terminal$ sleep 5 ;; cat hello.txt ;; sleep 1 ;; echo "hi" ;; ls
+Got command sleep 5 ;; cat hello.txt ;; sleep 1 ;; echo "hi" ;; ls
+cat: hello.txt: No such file or directory
+"hi"
+a.out		output.txt	sample.txt	xyz.txt
+abc.txt		report.txt	turtle.c
+
