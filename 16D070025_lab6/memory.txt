@@ -1,0 +1,7 @@
+1) r stores the address to be freed. First r->next is pointed at the head kmem.freelist and then the 
+   head kmem.freelist is pointed at r. These steps result in the new page being added at the beginning of the 
+   linked list.
+
+2) PDX(va) has the first ten bits of the va. pde contains the address of the page directory entry at the index given by PDX(va).
+   PTE_ADDR extracts the first twenty bits of *pde which contains the physical address of the page table. p2v translates the address
+   into virtual address	and pgtab contains the base address of the page table. PTX(va) extracts the next ten bits of the virtual address and pgtab[PTX(va)] is the page table entry at the index given by PTX(va). Finally, the address of the page table entry is returned. 
